@@ -1,0 +1,11 @@
+package com.nirmalya.ppmtool.repository;
+
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
+
+import com.nirmalya.ppmtool.domain.Project;
+
+@Repository
+public class BackLogRepository  extends CrudRepository<Project, Long> {
+
+}
