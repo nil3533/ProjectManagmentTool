@@ -1,0 +1,23 @@
+package com.nirmalya.ppmtool.validator;
+
+
+
+import org.springframework.validation.Errors;
+import org.springframework.validation.Validator;
+
+import com.nirmalya.ppmtool.domain.User;
+
+public class UserValidator implements Validator{
+
+	@Override
+    public boolean supports(Class<?> aClass) {
+        return User.class.equals(aClass);
+    }
+
+	@Override
+	public void validate(Object target, Errors errors) {
+		User user = (User) object;
+		
+	}
+
+}

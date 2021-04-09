@@ -58,7 +58,7 @@ public class Project {
     @Temporal(TemporalType.TIMESTAMP)
     private Date updated_At;
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "project")
-    
+    @JsonIgnore
     private BackLog backlog;
     
     @PrePersist

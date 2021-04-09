@@ -1,0 +1,5 @@
+package com.nirmalya.ppmtool.repository;
+
+public interface UserRepository {
+
+}

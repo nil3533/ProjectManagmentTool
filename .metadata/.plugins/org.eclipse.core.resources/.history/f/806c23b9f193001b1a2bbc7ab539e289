@@ -1,0 +1,9 @@
+package com.nirmalya.ppmtool.utilities;
+
+public class FetchDetails   {
+	
+	public T getDetails() {
+		
+	}
+
+}

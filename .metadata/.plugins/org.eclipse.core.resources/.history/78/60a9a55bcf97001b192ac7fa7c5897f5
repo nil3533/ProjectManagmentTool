@@ -1,0 +1,5 @@
+package com.nirmalya.ppmtool.validator;
+
+public class UserValidator {
+
+}

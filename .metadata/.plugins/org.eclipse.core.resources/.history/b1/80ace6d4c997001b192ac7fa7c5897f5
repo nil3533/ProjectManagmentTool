@@ -1,0 +1,16 @@
+package com.nirmalya.ppmtool.service;
+
+import com.nirmalya.ppmtool.repository.UserRepository;
+
+public class UserService {
+	
+	private UserRepository userRepository;
+
+	public UserService(UserRepository userRepository) {
+		super();
+		this.userRepository = userRepository;
+	}
+	
+	
+
+}

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import ProjectItem from "./project/ProjectItem";
 import { useDispatch, useSelector } from "react-redux";
 import { getProjects } from "../actions/projectAction";
@@ -9,6 +9,9 @@ const Dashboard = () => {
   const _projectList = useSelector((state) => state.project);
   const { projects } = _projectList;
 
+  const projectArr = [];
+  projectArr.push(projects);
+
   useEffect(() => {
     dispatch(getProjects());
   }, [dispatch]);
@@ -16,7 +19,7 @@ const Dashboard = () => {
     <div style={{ paddingLeft: "100px", paddingRight: "100px" }}>
       <h1>Project Item</h1>
       <h1>Welcome to dashboard</h1>
-      <div style={{ paddingRight: "990px" }}>
+      <div>
         <CreateProjectButton></CreateProjectButton>
       </div>
       {projects.map((project) => (

@@ -1,0 +1,11 @@
+package com.nirmalya.ppmtool.exception;
+
+import org.springframework.web.bind.annotation.ResponseStatus;
+
+@ResponseStatus(HttpStatus.BAD_REQUEST)
+public class UserNameIsAlreadyExistsException {
+
+	public UserNameIsAlreadyExistsException(String message) {
+        super(message);
+    }
+}

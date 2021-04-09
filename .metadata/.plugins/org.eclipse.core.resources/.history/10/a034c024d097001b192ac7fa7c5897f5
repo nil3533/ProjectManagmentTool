@@ -1,0 +1,62 @@
+package com.nirmalya.ppmtool.controller;
+
+import javax.validation.Valid;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.nirmalya.ppmtool.domain.User;
+import com.nirmalya.ppmtool.exception.UserNameAlreadyExistsException;
+import com.nirmalya.ppmtool.service.UserService;
+import com.nirmalya.ppmtool.service.ValidationErrorService;
+import com.nirmalya.ppmtool.validator.UserValidator;
+
+@RestController
+@RequestMapping("/api/users")
+public class UserController {
+	
+	private UserService userService;
+	private ValidationErrorService validationErrorService;
+	
+	@Bean
+	private UserValidator userValitaor() {
+		return new UserValidator();
+		
+	}
+	
+	public UserController(UserService userService,ValidationErrorService validationErrorService) {
+		super();
+		this.userService = userService;
+		this.validationErrorService = validationErrorService;
+	}
+	
+	@PostMapping("/register")
+    public ResponseEntity<?> registerUser(@Valid @RequestBody User user, BindingResult result){
+        // Validate passwords match
+       // userValidator.validate(user,result);
+
+		/*
+		 * ResponseEntity<?> errorMap =
+		 * mapValidationErrorService.MapValidationService(result); if(errorMap !=
+		 * null)return errorMap;
+		 */
+		
+		
+		ResponseEntity<?> errorMap = validationErrorService.mapValidationErrorService(result);
+		
+		if(errorMap!=null)
+			return errorMap;		
+
+        User newUser = userService.saveUser(user);
+        return  new ResponseEntity<User>(newUser, HttpStatus.CREATED);
+		
+		
+    }
+
+}

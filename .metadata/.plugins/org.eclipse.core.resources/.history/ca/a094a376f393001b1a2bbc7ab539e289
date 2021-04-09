@@ -1,0 +1,20 @@
+package com.nirmalya.ppmtool.utilities;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.nirmalya.ppmtool.repository.ProjectRepository;
+
+public  class FetchDetails   {
+	
+	@Autowired
+	private ProjectRepository projectRepository;
+	
+	public <T> T getProjectByIdentifier(String pIdentifier,String repositoryClassName) {
+		System.out.println(pIdentifier + repositoryClassName);
+		if("projectRepository".equals(repositoryClassName)) {
+			projectRepository.findByProjectIdentifier(pIdentifier);
+		}
+		return null;
+	}
+
+}

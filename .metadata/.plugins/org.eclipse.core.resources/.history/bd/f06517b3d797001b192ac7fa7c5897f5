@@ -1,0 +1,5 @@
+package com.nirmalya.ppmtool.payload;
+
+public class JWTLoginSuccessResponse {
+
+}

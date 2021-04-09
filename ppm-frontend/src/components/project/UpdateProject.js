@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "../../../node_modules/bootstrap/dist/css/bootstrap.min.css";
-import { getProject } from "../../actions/projectAction";
+
 import { useHistory, useParams } from "react-router-dom";
 import "../../updateproject.css";
-import axios from "axios";
+import API from "../../../src/AxiosService";
 import { createProject } from "../../actions/projectAction";
 
 export const UpdateProject = () => {
@@ -25,17 +25,14 @@ export const UpdateProject = () => {
   });
 
   useEffect(() => {
-    //dispatch(getProject(p_id, history));
-
-    async function getData() {
-      const result = await axios.get("http://localhost:8080/api/project/" + p_id).then((result) => {
-        console.log(result.data);
-        setProjectParams(result.data);
-      });
-    }
-    getData();
-    // setProjectParams(project);
+    getProject(p_id);
   }, [p_id]);
+
+  const getProject = (p_id) => {
+    API.getProject(p_id).then((result) => {
+      setProjectParams(result.data);
+    });
+  };
 
   useEffect(() => {
     if (errors) setErrors(errors);

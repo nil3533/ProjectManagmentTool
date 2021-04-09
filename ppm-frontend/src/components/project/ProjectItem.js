@@ -3,15 +3,15 @@ import { faTrashAlt, faPenAlt, faList } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 import { deleteProject } from "../../actions/projectAction";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 const ProjectItem = (props) => {
   const dispatch = useDispatch();
 
   function deleteProject1(id) {
-    alert(id);
     dispatch(deleteProject(id));
   }
+  //const status = "TO_DO,IN_PROGRESS,COMPLETE";
 
   return (
     <div>
@@ -41,15 +41,15 @@ const ProjectItem = (props) => {
               </div>
               <br></br>
               <div style={{ float: "left" }}>
-                <span style={{ fontSize: "11px", fontFamily: "verdana" }}>
-                  {props.project.description}
-                </span>
+                <span style={{ fontSize: "11px", fontFamily: "verdana" }}>{props.project.description}</span>
               </div>
               <br></br>
               <br></br>
 
               <div style={{ float: "left" }}>
-                <a
+                <Link
+                  href="#"
+                  to={`/projectBoard/${props.project.projectIdentifier}`}
                   className="btn btn-light "
                   style={{
                     fontSize: "9px",
@@ -60,7 +60,7 @@ const ProjectItem = (props) => {
                 >
                   <FontAwesomeIcon icon={faList} />
                   &nbsp; PROJECT BOARD
-                </a>
+                </Link>
                 &nbsp;&nbsp;&nbsp;&nbsp;
                 <Link
                   to={`/updateProject/${props.project.projectIdentifier}`}
@@ -77,6 +77,7 @@ const ProjectItem = (props) => {
                 </Link>
                 &nbsp;&nbsp;&nbsp;&nbsp;
                 <a
+                  href="#"
                   className="btn btn-light"
                   style={{
                     fontSize: "9px",

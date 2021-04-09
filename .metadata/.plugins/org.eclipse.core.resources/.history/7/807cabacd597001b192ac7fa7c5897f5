@@ -1,0 +1,33 @@
+package com.nirmalya.ppmtool.service;
+
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
+
+import com.nirmalya.ppmtool.repository.UserRepository;
+import com.sun.el.stream.Optional;
+
+@Service
+public class CustomUserDetailservice implements UserDetailsService {
+	
+	private UserRepository userRepository;	
+
+	public CustomUserDetailservice(UserRepository userRepository) {
+		super();
+		this.userRepository = userRepository;
+	}
+
+
+
+	@Override
+	public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
+		return this.userRepository.findByUsername(userName)
+		        .orElseThrow(this.exception());
+	}
+	
+	 private Supplier<UsernameNotFoundException> exception() {
+		    return () -> new UsernameNotFoundException(this.invalidUserMessage);
+		  }
+
+}

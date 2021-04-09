@@ -1,0 +1,23 @@
+package com.nirmalya.ppmtool.controller;
+
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@RequestMapping("/api/users")
+public class UserController {
+	
+	@PostMapping("/register")
+    public ResponseEntity<?> registerUser(@Valid @RequestBody User user, BindingResult result){
+        // Validate passwords match
+        userValidator.validate(user,result);
+
+        ResponseEntity<?> errorMap = mapValidationErrorService.MapValidationService(result);
+        if(errorMap != null)return errorMap;
+
+        User newUser = userService.saveUser(user);
+
+        return  new ResponseEntity<User>(newUser, HttpStatus.CREATED);
+    }
+
+}

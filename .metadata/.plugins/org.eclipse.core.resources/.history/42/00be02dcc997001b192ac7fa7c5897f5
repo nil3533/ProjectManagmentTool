@@ -1,0 +1,24 @@
+package com.nirmalya.ppmtool.service;
+
+import com.nirmalya.ppmtool.repository.UserRepository;
+
+public class UserService {
+	
+	private UserRepository userRepository;
+
+	public UserService(UserRepository userRepository) {
+		super();
+		this.userRepository = userRepository;
+	}
+	
+	public User saveUser (User newUser){
+	      newUser.setPassword(bCryptPasswordEncoder.encode(newUser.getPassword()));
+
+	      //Username has to be unique (exception)
+
+	        // Make sure that password and confirmPassword match
+	        // We don't persist or show the confirmPassword
+	      return userRepository.save(newUser);
+	    }
+
+}

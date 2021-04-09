@@ -1,0 +1,5 @@
+package com.nirmalya.ppmtool.exception;
+
+public class RandomException {
+
+}

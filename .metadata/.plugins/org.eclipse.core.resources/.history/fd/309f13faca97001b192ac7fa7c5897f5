@@ -1,0 +1,24 @@
+package com.nirmalya.ppmtool.service;
+
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
+import com.nirmalya.ppmtool.domain.User;
+import com.nirmalya.ppmtool.repository.UserRepository;
+
+public class UserService {
+
+	private UserRepository userRepository;
+	private BCryptPasswordEncoder bCryptPasswordEncoder;
+
+	public UserService(UserRepository userRepository, BCryptPasswordEncoder bCryptPasswordEncoder) {
+		super();
+		this.userRepository = userRepository;
+		this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+	}
+
+	public User saveUser(User newUser) {
+		newUser.setPassword(bCryptPasswordEncoder.encode(newUser.getPassword()));
+		return userRepository.save(newUser);
+	}
+
+}

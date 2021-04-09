@@ -65,3 +65,42 @@ span {
   font-weight: bold;
   color: gray;
 }
+.back-button {
+  width: 60%;
+  border: none;
+  padding-top: 10px;
+}
+
+.pt-span-hd {
+  display: inline;
+  font-size: 11px;
+  font-family: verdana;
+  font-weight: bold;
+  float: left;
+  /* color: gray; */
+}
+
+pt-span-hd {
+  display: inline;
+  font-size: 11px;
+  font-family: verdana;
+  font-weight: bold;
+  float: right;
+  /* color: gray; */
+}
+
+.pt-span {
+  display: inline;
+  font-size: 10px;
+  font-family: verdana;
+  float: left;
+  /* color: gray; */
+}
+
+.cont {
+  background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url(../src/img/4380.jpg);
+  background-repeat: no-repeat;
+  height: 94vh;
+  background-size: cover;
+  color: white;
+}
