@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "../../../node_modules/bootstrap/dist/css/bootstrap.min.css";
 
 import { useHistory, useParams } from "react-router-dom";
 import "../../updateproject.css";
-import API from "../../../src/AxiosService";
-import { createProject } from "../../actions/projectAction";
+import { createProject, getProject } from "../../actions/projectAction";
 
 export const UpdateProject = () => {
   const history = useHistory();
@@ -24,21 +23,24 @@ export const UpdateProject = () => {
     end_date: "",
   });
 
-  useEffect(() => {
-    getProject(p_id);
-  }, [p_id]);
+  useMemo(() => {
+    setProjectParams(project);
+  }, [project]);
 
-  const getProject = (p_id) => {
-    API.getProject(p_id).then((result) => {
-      setProjectParams(result.data);
-    });
-  };
+  useEffect(() => {
+    dispatch(getProject(p_id));
+  }, [p_id, dispatch]);
+
+  // const getProject = (p_id) => {
+  //   API.getProject(p_id).then((result) => {
+  //     setProjectParams(result.data);
+  //   });
+  // };
 
   useEffect(() => {
     if (errors) setErrors(errors);
   }, [errors]);
 
-  console.log(project);
   const inputEvent = (event) => {
     const { name, value } = event.target;
     setProjectParams({ ...projectParams, [name]: value });

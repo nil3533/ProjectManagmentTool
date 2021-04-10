@@ -26,28 +26,38 @@ import lombok.ToString;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
+
 public class ProjectTask {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+	
 	@Column(updatable = false, unique = true)
     private String projectSequence;
+	
 	@NotBlank(message = "Please include a project summary")
     private String summary;
+	
 	private String acceptanceCriteria;
+	
 	@Column(updatable = false)
     private String projectIdentifier;
+	
 	@ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="backlog_id", updatable = false, nullable = false)
     @JsonIgnore
     private BackLog backlog;
-    private String status;
-    private Integer priority;
+    
+	private String status;
+    
+	private Integer priority;
+    
     @JsonFormat(pattern = "yyyy-MM-dd")
     private Date dueDate;
+    
     @JsonFormat(pattern = "yyyy-MM-dd")
     private Date create_At;
+    
     @JsonFormat(pattern = "yyyy-MM-dd")
     private Date update_At;
     
@@ -69,4 +79,13 @@ public class ProjectTask {
         this.update_At = new Date();
     }
 
+	@Override
+	public String toString() {
+		return "ProjectTask [id=" + id + ", projectSequence=" + projectSequence + ", summary=" + summary
+				+ ", acceptanceCriteria=" + acceptanceCriteria + ", projectIdentifier=" + projectIdentifier
+				+ ", backlog=" + backlog + ", status=" + status + ", priority=" + priority + ", dueDate=" + dueDate
+				+ ", create_At=" + create_At + ", update_At=" + update_At + "]";
+	}
+
+    
 }

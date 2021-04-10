@@ -1,9 +1,0 @@
-package com.nirmalya.ppmtool.repository;
-
-import org.springframework.stereotype.Repository;
-
-@Repository
-
-public class ProjectTaskRepository {
-
-}

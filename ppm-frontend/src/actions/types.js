@@ -13,3 +13,5 @@ export const STATUS_ALL = "TO_DO,IN_PROGRESS,COMPLETE";
 export const STATUS_TODO = "TO_DO";
 export const STATUS_INPROGRESS = "IN_PROGRESS";
 export const STATUS_COMPLETE = "COMPLETE";
+
+export const SET_CURRENT_USER = "SET_CURRENT_USER";

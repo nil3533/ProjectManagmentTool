@@ -1,5 +1,5 @@
 import React from "react";
-import { faTrashAlt, faPenAlt, faList } from "@fortawesome/free-solid-svg-icons";
+import { faTrashAlt, faList } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
@@ -42,7 +42,7 @@ const ProjectTask = (props) => {
         <div className="col-md-10 offset-md-1 ">
           <div className="card ">
             <div
-              class={`card-header text-left ${priorityClass}`}
+              className={`card-header text-left ${priorityClass}`}
               style={{
                 fontSize: "11px",
                 fontWeight: "bold",

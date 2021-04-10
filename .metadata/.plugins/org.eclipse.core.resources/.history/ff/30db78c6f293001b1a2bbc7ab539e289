@@ -1,9 +1,0 @@
-package com.nirmalya.ppmtool.utilities;
-
-public  class FetchDetails   {
-	
-	public <T> T getProjectByIdentifier(String pIdentifier,String repositoryClassName) {
-		return null;
-	}
-
-}

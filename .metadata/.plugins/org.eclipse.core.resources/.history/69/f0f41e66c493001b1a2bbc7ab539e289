@@ -1,9 +1,0 @@
-package com.nirmalya.ppmtool.utilities;
-
-public class IConstant {
-	
-	public static final String PROJECT_TASK_INITITAL = "TO_DO";
-	public static final String PROJECT_TASK_INPROGRESS = "INPROGRESS";
-	public static final String PROJECT_TASK_COMPLETE = "COMPLETE";
-
-}

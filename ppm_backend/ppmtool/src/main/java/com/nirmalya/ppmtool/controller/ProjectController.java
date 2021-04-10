@@ -1,5 +1,6 @@
 package com.nirmalya.ppmtool.controller;
 
+import java.security.Principal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -38,30 +39,30 @@ public class ProjectController {
 	}
 
 	@PostMapping("")
-	public ResponseEntity<?> createNewProject(@Valid @RequestBody Project project, BindingResult result){		
+	public ResponseEntity<?> createNewProject(@Valid @RequestBody Project project, BindingResult result,Principal principal){		
 		ResponseEntity<?> errorMap = validationErrorService.mapValidationErrorService(result);
 		
 		if(errorMap!=null)
 			return errorMap;		 
 		
-		Project newProject = projectService.saveOrUpdateProject(project);
+		Project newProject = projectService.saveOrUpdateProject(project,principal.getName());
 		return new ResponseEntity<Project>(newProject,HttpStatus.CREATED);
 	}
 	
 	@GetMapping("/{projectId}")
-    public ResponseEntity<?> getProjectById(@PathVariable String projectId){        
-		Project project = projectService.findProjectByIdentifier(projectId);
+    public ResponseEntity<?> getProjectById(@PathVariable String projectId, Principal principal){        
+		Project project = projectService.findProjectByIdentifier(projectId,principal.getName());
         return new ResponseEntity<Project>(project, HttpStatus.OK);
     }
 	
 	 @GetMapping("/all")
-		public Iterable<Project> getAllProjects() {
-			return projectService.findAllProjects();
+		public Iterable<Project> getAllProjects(Principal principal) {
+			return projectService.findAllProjects(principal.getName());
 		}
 	 
 	 @DeleteMapping("/{projectId}")
-	    public ResponseEntity<?> deleteProject(@PathVariable String projectId){
-	        projectService.deleteProjectByIdentifier(projectId);
+	    public ResponseEntity<?> deleteProject(@PathVariable String projectId, Principal principal){
+	        projectService.deleteProjectByIdentifier(projectId, principal.getName());
 	        return new ResponseEntity<String>("Project "+projectId+" deleted successfully", HttpStatus.OK);
 	    }
 	}

@@ -1,13 +1,23 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Link, useHistory } from "react-router-dom";
 import { faUser, faSignInAlt } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useSelector } from "react-redux";
 
 const Landing = () => {
+  const _security = useSelector((state) => state.security);
+  const history = useHistory();
+
+  useEffect(() => {
+    if (_security.validToken) {
+      history.push("/dashboard");
+    }
+  }, []);
+
   return (
     <div>
       <div
-        class="container"
+        className="container"
         style={{
           height: "100px",
           marginTop: "300px",
@@ -16,15 +26,16 @@ const Landing = () => {
           transition: "all 0.3s ease 0s",
         }}
       >
-        <div class="row">
-          <div class="col-sm text-right" style={{ fontSize: "40px", float: "left" }}>
+        <div className="row">
+          <div className="col-sm text-right" style={{ fontSize: "40px", float: "left" }}>
             Project Managment Tool
           </div>
 
-          <div class="col-sm">
-            <div class="btn-group mr-2" role="group" aria-label="Basic example" style={{ margin: "5px" }}>
+          <div className="col-sm">
+            <div className="btn-group mr-2" role="group" aria-label="Basic example" style={{ margin: "5px" }}>
               <Link
-                className="btn btn-light text-primary "
+                to="/register"
+                className="btn btn-primary text-light "
                 style={{
                   fontSize: "14px",
                   fontFamily: "verdana",
@@ -35,9 +46,10 @@ const Landing = () => {
                 <FontAwesomeIcon icon={faUser} /> Sign Up
               </Link>
             </div>
-            <div class="btn-group mr-2" role="group" aria-label="Basic example" style={{ margin: "5px" }}>
+            <div className="btn-group mr-2" role="group" aria-label="Basic example" style={{ margin: "5px" }}>
               <Link
-                className="btn btn-light text-primary "
+                to="/login"
+                className="btn btn-primary text-light "
                 style={{
                   fontSize: "14px",
                   fontFamily: "verdana",

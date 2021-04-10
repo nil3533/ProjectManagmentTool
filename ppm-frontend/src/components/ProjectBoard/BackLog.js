@@ -1,5 +1,5 @@
 import React from "react";
-import { faCheckCircle, faPlusSquare, faSpinner, faThList } from "@fortawesome/free-solid-svg-icons";
+import { faCheckCircle, faSpinner, faThList } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const BackLog = (props) => {

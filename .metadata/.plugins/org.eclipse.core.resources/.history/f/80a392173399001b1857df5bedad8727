@@ -1,0 +1,53 @@
+package com.nirmalya.ppmtool.security;
+
+import java.io.IOException;
+
+import javax.servlet.FilterChain;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.util.StringUtils;
+import org.springframework.web.filter.OncePerRequestFilter;
+
+import com.nirmalya.ppmtool.service.CustomUserDetailService;
+import com.nirmalya.ppmtool.utilities.SecurityConstant;
+
+import lombok.AllArgsConstructor;
+
+@AllArgsConstructor
+public class JwtAuthenticationFilter extends OncePerRequestFilter {
+
+	private JWTProvider tokenProvider;
+
+	private CustomUserDetailService customUserDetailsService;
+
+	@Override
+	protected void doFilterInternal(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, FilterChain filterChain)
+			throws ServletException, IOException {
+
+		try {
+			String jwt = getJwtFromRequest(httpServletRequest);
+			
+			if(StringUtils.hasText(jwt) && tokenProvider.validateToken(jwt)){
+				Long userId = tokenProvider.getUserIdFromJWT(jwt);
+				 User userDetails = customUserDetailsService.loadUserById(userId);
+			}
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+	}
+	
+	private String getJwtFromRequest(HttpServletRequest httpServletRequest) {
+		String bearerToken = httpServletRequest.getHeader(SecurityConstant.HEADER_STRING);
+		
+		if(StringUtils.hasText(bearerToken) && bearerToken.startsWith(SecurityConstant.TOKEN_PREFIX)){
+            return bearerToken.substring(7, bearerToken.length());
+        }
+
+        return null;
+	}
+
+}

@@ -14,7 +14,7 @@ const ProjectBoard = () => {
   const backLogs = useSelector((state) => state.backlog);
   const { project_tasks } = backLogs;
   const [_status, setStatus] = useState("ALL");
-  const [bgColor, setBgColor] = useState();
+
   const [_errors, setErrors] = useState({});
   const errors = useSelector((state) => state.errors);
 
@@ -79,11 +79,9 @@ const ProjectBoard = () => {
       if (pt.status !== lastStatus) {
         rows.push(<BackLog pt_status={pt.status}></BackLog>);
       }
-
       lastStatus = pt.status;
       rows.push(<ProjectTask pt={pt} key={pt.id}></ProjectTask>);
     } else {
-      console.log(_status);
       if (pt.status !== lastStatus) {
         if (pt.status === _status) {
           rows.push(<BackLog pt_status={pt.status}></BackLog>);
@@ -142,7 +140,7 @@ const ProjectBoard = () => {
                   href="#"
                   onClick={() => setStatus("ALL")}
                   className="list-group-item text-left "
-                  style={{ cursor: "pointer", backgroundColor: bgColor }}
+                  style={{ cursor: "pointer", backgroundColor: "white" }}
                 >
                   ALL
                 </li>

@@ -20,7 +20,7 @@ const ProjectItem = (props) => {
         <div className="col-md-8 offset-md-2">
           <div className="card">
             <div
-              class="card-header text-left"
+              className="card-header text-left"
               style={{
                 fontSize: "11px",
                 fontWeight: "bold",
@@ -77,7 +77,7 @@ const ProjectItem = (props) => {
                 </Link>
                 &nbsp;&nbsp;&nbsp;&nbsp;
                 <a
-                  href="#"
+                  href="/"
                   className="btn btn-light"
                   style={{
                     fontSize: "9px",
